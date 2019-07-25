@@ -12,8 +12,9 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserDao userDao;
 
-    @Autowired
-    private TransactionUtils transactionUtils;
+//    @Autowired
+//    private TransactionUtils transactionUtils;
+
 
     public void add() {
         //注意事项：在使用 spring 事务的时候，service 不要 try，最好将异常排除给外层 aop 异常通知接受回滚

@@ -20,8 +20,6 @@ public class AopTransaction {
     @Autowired
     private TransactionUtils transactionUtils;
 
-    TransactionStatus status = null;
-
     @Around("execution(* com.xiaoming.day16.service.UserService.add(..))")
     public void around(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
         //调用方法之前执行
