@@ -17,7 +17,7 @@ public class UserServiceImpl implements UserService {
     private OrderService orderServiceImpl;
 
     public void add() {
-        orderServiceImpl.addOrder();
+//        orderServiceImpl.addOrder();
         System.out.println("往数据库添加数据.....");
     }
 }
