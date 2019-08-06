@@ -45,8 +45,6 @@ public class SQLUtils {
 
 	/**
 	 * 将SQL语句的参数替换变为?<br>
-	 * 作者: 每特教育-余胜军<br>
-	 * 联系方式:QQ644064779|WWW.itmayiedu.com<br>
 	 * 
 	 * @param sql
 	 * @param parameterName
