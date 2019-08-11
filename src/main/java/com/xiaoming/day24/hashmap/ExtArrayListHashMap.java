@@ -4,6 +4,11 @@ package com.xiaoming.day24.hashmap;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 基于 ArrayList 实现 HashMap
+ * @param <Key>
+ * @param <Value>
+ */
 public class ExtArrayListHashMap<Key, Value> {
 
     /**
@@ -40,7 +45,7 @@ public class ExtArrayListHashMap<Key, Value> {
     }
 
     /**
-     * hash存储
+     * hash存储对象
      * @param <Key>
      * @param <Value>
      */
