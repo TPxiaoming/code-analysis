@@ -16,7 +16,6 @@ public class Test001 {
         extHashMap.put("4号", "1号");// 3
         extHashMap.put("6号", "1号");// 4
         extHashMap.put("7号", "1号");
-        extHashMap.put("14号", "1号");
 
         extHashMap.put("22号", "1号");
         extHashMap.put("26号", "1号");
@@ -26,16 +25,16 @@ public class Test001 {
         extHashMap.put("30号", "1号");
         System.out.println("扩容前数据....");
         extHashMap.print();
-        extHashMap.put("6号", "123");// 4
+        /*extHashMap.put("6号", "123");// 4
         System.out.println("修改数据后....");
         extHashMap.print();
-        System.out.println(extHashMap.get("6号"));
-        /*System.out.println("扩容后数据....");
+        System.out.println(extHashMap.get("6号"));*/
+        System.out.println("扩容后数据....");
         extHashMap.put("31号", "1号");
         extHashMap.put("66号", "123466666");
         extHashMap.print();
         // 修改3号之后
-        System.out.println(extHashMap.get("66号"));*/
+        System.out.println(extHashMap.get("66号"));
         // System.out.println("扩容之前获取数据:" + extHashMap.get("1号"));
         // extHashMap.print();
         // System.out.println();

@@ -25,12 +25,12 @@ public class ExtHashMap<K, V> implements ExtMap<K, V> {
     /**
      * 负载因子 0.75 扩容的时候才会用到  负载因子越小，他的 hash 冲突越少
      */
-    static final float DEFAULT_LOAD_FACTOR = 0.75f;
+    static  float DEFAULT_LOAD_FACTOR = 0.75f;
 
     /**
      * HashMap 默认初始大小 16
      */
-    static final int DEFAULT_INITIAL_CAPACITY = 1 << 4; // aka 16
+    static  int DEFAULT_INITIAL_CAPACITY = 1 << 4; // aka 16
 
     /**
      * 添加元素
@@ -59,7 +59,7 @@ public class ExtHashMap<K, V> implements ExtMap<K, V> {
         //判断数组是否需要扩容  hashMap 中是从什么时候开始扩容
         //实际存储大小 = 负载因子 * 初始容量 = DEFAULT_LOAD_FACTOR 0.75 * DEFAULT_INITIAL_CAPACITY 16 = 12
         //如果 size >= 12 的时候就需要开始扩容数组，扩容数组大小是之前的两倍
-        if(size > DEFAULT_LOAD_FACTOR * DEFAULT_INITIAL_CAPACITY){
+        if(size >= DEFAULT_LOAD_FACTOR * DEFAULT_INITIAL_CAPACITY){
             //需要开始对 table 进行数组扩容
             resize();
         }
@@ -167,6 +167,31 @@ public class ExtHashMap<K, V> implements ExtMap<K, V> {
      * 3.将新的 newTable 赋值给老的 table
      */
     public void resize(){
+        //生成新的 table 是之前的两倍的大小
+        Node<K,V >[] newTable = new Node[DEFAULT_INITIAL_CAPACITY << 1];
+        //重新计算 index 索引，存放在新的 table 里面
+        for (int i = 0; i < table.length; i++) {
+            //存放之前的 table 原来的 node
+            Node<K, V> oldNode = table[i];
+            while (oldNode != null){
+                table[i] = null;//为了垃圾回收机制能够回收 将之前的 node 删除
+                //存放之前的 table 原来的 node key
+                K oldKey = oldNode.getKey();
+                //重新计算 index
+                int index = getIndex(oldKey, newTable.length);
+                //存放之前的 table 原来的 node next
+                Node<K, V> oldNext = oldNode.next;
+                //将节点存放在新 table 链表的表头 如果 index 下表在新 newTable 发生相同的时候，以链表进行存储   原来的 node 的下一个是最新的（原来的node存放在新的 node 下一个）
+                oldNode.next = newTable[index];
+                //将之前的 node 赋值给 newTable[index]
+                newTable[index] = oldNode;
+                oldNode = oldNext;
+            }
+        }
+        //将新的 newTable 赋值给老的 table
+        table = newTable;
+        DEFAULT_INITIAL_CAPACITY = newTable.length;
+        newTable = null;//为了垃圾回收机制能够回收
 
     }
 
